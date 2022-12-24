@@ -6,6 +6,7 @@ import type { IToken } from '~/types';
 import { getAdapterRoutes } from './useGetRoutes';
 import { getTopRoute } from '~/utils/getTopRoute';
 import { useMemo } from 'react';
+import { useLiquidityStore } from '~/store';
 
 async function getInitialLiquidityRoutes({
 	chain,
@@ -143,7 +144,7 @@ async function getAdapterRoutesByAmount({ chain, fromToken, toToken, amount, fro
 	}
 }
 
-interface IGetInitialTokenLiquidity {
+interface IGetTokenLiquidity {
 	chain: string | null;
 	fromToken: IToken | null;
 	toToken: IToken | null;
@@ -161,7 +162,7 @@ export const useGetInitialTokenLiquidity = ({
 	fromTokenPrice,
 	toTokenPrice,
 	gasPriceData
-}: IGetInitialTokenLiquidity) => {
+}: IGetTokenLiquidity) => {
 	return useQuery(
 		['initialLiquidity', chain, fromToken?.address, toToken?.address, gasTokenPrice, fromTokenPrice, toTokenPrice],
 		() =>
@@ -177,10 +178,6 @@ export const useGetInitialTokenLiquidity = ({
 	);
 };
 
-interface ITokensLiquidity extends IGetInitialTokenLiquidity {
-	liquidity: Array<number>;
-}
-
 export const useGetTokensLiquidity = ({
 	chain,
 	fromToken,
@@ -188,9 +185,10 @@ export const useGetTokensLiquidity = ({
 	gasTokenPrice,
 	fromTokenPrice,
 	toTokenPrice,
-	gasPriceData,
-	liquidity
-}: ITokensLiquidity) => {
+	gasPriceData
+}: IGetTokenLiquidity) => {
+	const liquidity = useLiquidityStore((state) => state.liquidity);
+
 	const res = useQueries({
 		queries: liquidity.map((liquidityAmount) => {
 			return {

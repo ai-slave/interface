@@ -9,6 +9,7 @@ import { useGetInitialTokenLiquidity, useGetTokensLiquidity } from '~/queries/us
 import dynamic from 'next/dynamic';
 import { getChartData } from '~/utils/getChartData';
 import { useGetPrice } from '~/queries/useGetPrice';
+import { useLiquidityStore } from '~/store';
 
 interface ISlippageChart {
 	chartData: Array<[number, number]>;
@@ -19,6 +20,9 @@ interface ISlippageChart {
 const SlippageChart = dynamic(() => import('../SlippageChart'), { ssr: false }) as React.FC<ISlippageChart>;
 
 export function LiquidityByToken({ fromToken, toToken, chain }: { fromToken: IToken; toToken: IToken; chain: string }) {
+	const liquidity = useLiquidityStore((state) => state.liquidity);
+	const updateLiquidity = useLiquidityStore((state) => state.updateLiquidity);
+
 	const { data: tokenAndGasPrices, isLoading: fetchingTokenPrices } = useGetPrice({
 		chain,
 		toToken: toToken?.address,
@@ -38,8 +42,6 @@ export function LiquidityByToken({ fromToken, toToken, chain }: { fromToken: ITo
 
 	const isLoading = fetchingTokenPrices || fetchingInitialTokenLiq;
 
-	const [liquidity, setLiquidity] = React.useState([]);
-
 	const { data: addlLiqRoutes } = useGetTokensLiquidity({
 		fromToken,
 		toToken,
@@ -47,8 +49,7 @@ export function LiquidityByToken({ fromToken, toToken, chain }: { fromToken: ITo
 		gasPriceData: tokenAndGasPrices?.gasPriceData,
 		gasTokenPrice: tokenAndGasPrices?.gasTokenPrice,
 		fromTokenPrice: tokenAndGasPrices?.fromTokenPrice,
-		toTokenPrice: tokenAndGasPrices?.toTokenPrice,
-		liquidity
+		toTokenPrice: tokenAndGasPrices?.toTokenPrice
 	});
 
 	const { chartData, newLiquidityValues } = React.useMemo(
@@ -64,7 +65,7 @@ export function LiquidityByToken({ fromToken, toToken, chain }: { fromToken: ITo
 	const filteredNewliqValues = newLiquidityValues.filter((newliq) => !liquidity.includes(newliq));
 
 	if (filteredNewliqValues.length) {
-		setLiquidity((prevLiq) => [...prevLiq, ...filteredNewliqValues].sort((a, b) => a - b));
+		updateLiquidity(filteredNewliqValues);
 	}
 
 	return (
