@@ -44,6 +44,7 @@ import RoutesPreview from './RoutesPreview';
 import { formatSuccessToast } from '~/utils/formatSuccessToast';
 import { useDebounce } from '~/hooks/useDebounce';
 import { useGetSavedTokens } from '~/queries/useGetSavedTokens';
+import { useEstimateGas } from './hooks/useEstimateGas';
 
 /*
 Integrated:
@@ -514,6 +515,13 @@ export function AggregatorContainer({ tokenlist }) {
 			isPrivacyEnabled,
 			setRoute
 		}
+	});
+
+	const gasData = useEstimateGas({
+		routes,
+		token: finalSelectedFromToken?.address,
+		userAddress: address,
+		chainId: 1
 	});
 
 	const { data: tokenPrices } = useGetPrice({
