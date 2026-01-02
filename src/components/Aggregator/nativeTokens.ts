@@ -350,6 +350,16 @@ const unichain = {
 	decimals: 18
 };
 
+const monad = {
+	mcap: Number.MAX_SAFE_INTEGER,
+	address: zeroAddress,
+	chainId: 143,
+	name: 'Monad',
+	symbol: 'MON',
+	logoURI: chainIconUrl('monad'),
+	decimals: 18
+};
+
 export const nativeTokens = [
 	ethereum,
 	arbitrum,
@@ -385,5 +395,6 @@ export const nativeTokens = [
 	linea,
 	scroll,
 	sonic,
-	unichain
+	unichain,
+	monad
 ];

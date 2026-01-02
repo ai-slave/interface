@@ -271,6 +271,13 @@ const unichain = {
 	iconBackground: '#000'
 };
 
+const monad = {
+	...wagmiChains.monad,
+	network: 'monad',
+	iconUrl: chainIconUrl('monad'),
+	iconBackground: '#000'
+};
+
 interface IChain extends Chain {
 	network: string;
 	iconUrl: string;
@@ -312,5 +319,6 @@ export const allChains: Array<IChain> = [
 	harmony,
 	scroll,
 	sonic,
-	unichain
+	unichain,
+	monad
 ];

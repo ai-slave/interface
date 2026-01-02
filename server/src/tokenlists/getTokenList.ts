@@ -84,7 +84,7 @@ const allSettled = (promises) =>
 		)
 	);
 
-const chainsToFetchFromKyberswap = [324, 1101, 59144, 534352, 146];
+const chainsToFetchFromKyberswap = [324, 1101, 59144, 534352, 146, 143];
 
 async function getFullCGTokenlist(){
 	const cgCoins = (await fetch("https://api.coingecko.com/api/v3/coins/list?include_platform=true").then(r => r.json())) as {
