@@ -18,7 +18,8 @@ export const chainToId = {
 	base: 'base',
 	scroll: 'scroll',
 	sonic: 'sonic',
-	unichain: 'unichain'
+	unichain: 'unichain',
+	monad: 'monad'
 	//mantle
 	//blast
 
@@ -44,7 +45,8 @@ const routers = {
 	base: universalRouter,
 	scroll: universalRouter,
 	sonic: universalRouter,
-	unichain: universalRouter
+	unichain: universalRouter,
+	monad: universalRouter
 }
 
 export const name = 'KyberSwap';
