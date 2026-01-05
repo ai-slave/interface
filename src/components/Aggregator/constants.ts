@@ -40,7 +40,8 @@ export const chainsMap = {
 	mantle: 5000,
 	scroll: 534352,
 	sonic: 146,
-	unichain: 130
+	unichain: 130,
+	hyperevm: 999
 } as const;
 
 export const geckoChainsMap: Record<string, number> = {
@@ -80,7 +81,8 @@ export const geckoChainsMap: Record<string, number> = {
 	mantle: 5000,
 	scroll: 534352,
 	sonic: 146,
-	unichain: 130
+	unichain: 130,
+	hyperliquid: 999
 };
 
 export const chainGasToken: Record<keyof typeof chainsMap, string> = {
@@ -120,7 +122,8 @@ export const chainGasToken: Record<keyof typeof chainsMap, string> = {
 	mantle: 'mantle',
 	scroll: 'ethereum',
 	sonic: 'sonic',
-	unichain: 'ethereum'
+	unichain: 'ethereum',
+	hyperevm: 'hyperliquid'
 };
 
 export const geckoTerminalChainsMap = {
@@ -231,7 +234,8 @@ export const wrappedTokensByChain = {
 	5000: '0x78c1b0c915c4faa5fffa6cabf0219da63d7f4cb8', // Mantle: WMNT
 	534352: '0x5300000000000000000000000000000000000004', // Scroll: WETH
 	146: '0x039e2fb66102314ce7b64ce5ce3e5183bc94ad38', // Sonic: wS
-	130: '0x4200000000000000000000000000000000000006' // Unichain: WETH
+	130: '0x4200000000000000000000000000000000000006', // Unichain: WETH
+	999: '0x5555555555555555555555555555555555555555' // HyperEVM: WHYPE
 } as const;
 
 export const topTokensByChain = {
@@ -341,6 +345,12 @@ export const topTokensByChain = {
 		'0x078D782b760474a361dDA0AF3839290b0EF57AD6', // USDC
 		'0x9151434b16b9763660705744891fA906F660EcC5', // USDT0
 		'0x4200000000000000000000000000000000000006' // WETH
+	],
+	999: [
+		zeroAddress, // HYPE
+		'0xb88339cb7199b77e23db6e890353e22632ba630f', // USDC
+		'0xb8ce59fc3717ada4c02eadf9682a9e934f625ebb', // USDT0
+		'0x5555555555555555555555555555555555555555' // WHYPE
 	]
 };
 

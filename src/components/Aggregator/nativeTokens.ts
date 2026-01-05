@@ -350,6 +350,16 @@ const unichain = {
 	decimals: 18
 };
 
+const hyperevm = {
+	mcap: Number.MAX_SAFE_INTEGER,
+	address: zeroAddress,
+	chainId: 999,
+	name: 'HYPE',
+	symbol: 'HYPE',
+	logoURI: chainIconUrl('hyperliquid'),
+	decimals: 18
+};
+
 export const nativeTokens = [
 	ethereum,
 	arbitrum,
@@ -385,5 +395,6 @@ export const nativeTokens = [
 	linea,
 	scroll,
 	sonic,
-	unichain
+	unichain,
+	hyperevm
 ];

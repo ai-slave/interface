@@ -271,6 +271,29 @@ const unichain = {
 	iconBackground: '#000'
 };
 
+const hyperevm = {
+	id: 999,
+	name: 'HyperEVM',
+	network: 'hyperevm',
+	iconUrl: chainIconUrl('hyperliquid'),
+	iconBackground: '#000',
+	nativeCurrency: {
+		decimals: 18,
+		name: 'HYPE',
+		symbol: 'HYPE'
+	},
+	rpcUrls: {
+		default: { http: ['https://rpc.hyperliquid.xyz/evm'] }
+	},
+	blockExplorers: {
+		default: {
+			name: 'HyperEVM Explorer',
+			url: 'https://explorer.hyperliquid.xyz'
+		}
+	},
+	testnet: false
+};
+
 interface IChain extends Chain {
 	network: string;
 	iconUrl: string;
@@ -312,5 +335,6 @@ export const allChains: Array<IChain> = [
 	harmony,
 	scroll,
 	sonic,
-	unichain
+	unichain,
+	hyperevm
 ];
