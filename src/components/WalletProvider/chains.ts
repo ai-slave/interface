@@ -288,7 +288,7 @@ const hyperevm = {
 	blockExplorers: {
 		default: {
 			name: 'HyperEVM Explorer',
-			url: 'https://explorer.hyperliquid.xyz'
+			url: 'https://app.hyperliquid.xyz/explorer'
 		}
 	},
 	testnet: false
